@@ -1,0 +1,36 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color:#fff;
+  background-color:#273142;
+}
+* {
+  border-radius: 0 !important;
+}
+
+a {
+  color: #fff;
+  cursor: pointer;
+}
+
+a:hover,
+a:active {
+  color: #00B7FF;
+  text-decoration: underline;
+}
+
+a.danger {
+  color: red;
+}
+
+.spacing {
+  margin-bottom: 20px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.panel{
+  color:#273142;
+}

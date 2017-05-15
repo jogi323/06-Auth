@@ -1,0 +1,28 @@
+
+<div class="col-md-8 col-md-offset-2">
+    <form class="form-inline" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        
+        <div class="form-group col-md-2">
+          <select class="form-control" [(ngModel)]="selectedValue.name" [ngModel]="search?.contentType" name="contentType" required>
+              <option *ngFor="let c of types" [ngValue]="c" >{{c.name}}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <input
+                    type="text"
+                    id="content"
+                    class="form-control"
+                    [ngModel]="search?.content"
+                    name="content"
+                    required>
+        </div>
+        <button type="submit" class="btn btn-default col-md-2">Submit</button>
+    </form>
+    
+</div>
+<br/> <br/>
+<div class="col-md-8 col-md-offset-2">
+    <app-search
+                [search]="search"
+                *ngFor="let search of searches"></app-search>
+</div>

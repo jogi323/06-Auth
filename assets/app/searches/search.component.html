@@ -1,0 +1,15 @@
+
+<article class="panel panel-default">
+    <div class="panel-body">
+        {{ search.content }}
+    </div>
+    <footer class="panel-footer">
+        <div class="author">
+            {{ search.username }}
+        </div>
+        <div class="config" *ngIf="belongsToUser()">
+            <a (click)="onChat()">Chat</a>
+            <a (click)="onMessage()">Message</a>
+        </div>
+    </footer>
+</article>
