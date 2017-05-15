@@ -20,6 +20,7 @@ router.use('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     var decoded = jwt.decode(req.query.token);
     User.findById(decoded.user._id, function (err, user) {
+        console.log(user);
         if (err) {
             return res.status(500).json({
                 title: 'An error occurred',
@@ -27,13 +28,15 @@ router.post('/', function (req, res, next) {
             });
         }
         else{
-            Search.findOne({}, function(err, searchs){
+            console.log();
+            Search.findById(user.searches[0], function(err, searchs){
                 if (err) {
                     return res.status(500).json({
                         title: 'An error occurred',
                         error: err
                     });
                 }
+                // If no search new search will be created
                 if (!searchs) {
                     console.log(req.body.content.split(" "));
                     var search = new Search({
@@ -72,6 +75,7 @@ router.post('/', function (req, res, next) {
                                 });
                             }
                             console.log("get called" + searches);
+
                             res.status(200).json({
                                 message: 'Success',
                                 obj: searches
@@ -79,8 +83,13 @@ router.post('/', function (req, res, next) {
                     });
                 
                 }
+                // If there is a existing serch it will be updated
                 else {
-                    console.log(req.body.content.split(" "));
+                    console.log(req.body.content.replace(/-/g, ""));
+                    console.log(searchs)
+                    
+                    user.oldSearches.push(searchs);
+                    user.save();
                     searchs.content = req.body.content;
                     searchs.contentType = req.body.contentType;
                     searchs.save(function (err, result) {
@@ -91,14 +100,23 @@ router.post('/', function (req, res, next) {
                             });
                         }
                     });    
-                    Search.find({contentType: req.body.contentType})
+                    console.log("searching the search docs");
+                  //  Search.index({content:"text"});
+                    Search.find({ $text: { $search: req.body.content.replace(/-/g, "") ,$diacriticSensitive: true}},{ score : { $meta: "textScore" } })
                         .limit(10)
-                        .where('content').in(req.body.content.split(" "))
+                        .sort({ score : { $meta : 'textScore' } })
+                        //.where('content').in(req.body.content.split(" "))
                         .populate('user', 'firstName')
                         .exec(function (err, searches) {
                             if (err) {
                                 return res.status(500).json({
                                     title: 'An error occurred',
+                                    error: err
+                                });
+                            }
+                            if(!searches){
+                                return res.status(200).json({
+                                    title: 'no collection found',
                                     error: err
                                 });
                             }

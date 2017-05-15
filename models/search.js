@@ -9,6 +9,8 @@ var schema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
+schema.index({content: "text"});
+
 schema.post('remove', function (search) {
     User.findById(search.user, function (err, user) {
         user.searches.pull(search);
