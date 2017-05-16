@@ -1,0 +1,45 @@
+
+<div class="card-block center">
+    <h4 class="m-b-0">
+        <span class="icon-text">Sign Up</span>
+    </h4>
+    <p class="text-muted">Create a new account</p>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <input
+                    type="text"
+                    id="lastName"
+                    class="form-control"
+                    formControlName="firstName"
+                    placeholder="Last Name">
+        </div>
+        <div class="form-group">
+            <input
+                    type="text"
+                    id="lastName"
+                    class="form-control"
+                    formControlName="lastName"
+                    placeholder="Last Name">
+        </div>
+        <div class="form-group">
+            <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    formControlName="email"
+                    placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    formControlName="password"
+                    placeholder="Password">
+        </div>
+        <button
+                class="btn btn-azure"
+                type="submit"
+                [disabled]="!myForm.valid">SignIn</button>
+    </form>
+</div>

@@ -4,47 +4,34 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
 
 import { AppComponent } from "./app.component";
-import { SearchComponent } from "./searches/search.component";
-import { SearchListComponent } from "./searches/search-list.component";
-import { SearchInputComponent } from "./searches/search-input.component";
-import { SearchesComponent } from "./searches/searches.component";
-import { MessageComponent } from "./messages/message.component";
-import { MessageListComponent } from "./messages/message-list.component";
-import { MessageInputComponent } from "./messages/message-input.component";
-import { MessagesComponent } from "./messages/messages.component";
-import { AuthenticationComponent } from "./auth/authentication.component";
-import { HeaderComponent } from "./header.component";
-import { routing } from "./app.routing";
-import { LogoutComponent } from "./auth/logout.component";
-import { SignupComponent } from "./auth/signup.component";
-import { SigninComponent } from "./auth/signin.component";
-import { AuthService } from "./auth/auth.service";
+import { AppRouting } from './app.routing';
+
+import { PageNotFoundComponent } from './not-found.component';
+import { MainModule } from './main/main.module';
+import { ProfileModule } from './profile/profile.module';
+import { AuthGuard } from './_guards/auth.guard';
+import { AlertService } from './_services/alert.service';
+import { AuthenticationService } from './_services/authentication.service';
+import { UserService } from './_services/user.service';
+import { SearchService } from './_services/search.service';
+import { HeaderComponent } from './header.component'
 
 @NgModule({
     declarations: [
         AppComponent,
-        SearchComponent,
-        SearchListComponent,
-        SearchInputComponent,
-        SearchesComponent,
-        MessageComponent,
-        MessageListComponent,
-        MessageInputComponent,
-        MessagesComponent,
-        AuthenticationComponent,
-        HeaderComponent,
-        LogoutComponent,
-        SignupComponent,
-        SigninComponent
+        PageNotFoundComponent,
+        HeaderComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
-        routing,
         ReactiveFormsModule,
-        HttpModule
+        HttpModule,
+        MainModule,
+        ProfileModule,
+        AppRouting
     ],
-    providers: [AuthService],
+    providers: [AuthGuard, AlertService, AuthenticationService, UserService, SearchService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
