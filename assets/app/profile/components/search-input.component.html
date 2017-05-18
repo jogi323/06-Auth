@@ -1,5 +1,6 @@
 
-<div class="col-md-8 col-md-offset-2">
+
+<div class="box profile-info n-border-top">
     <form class="form-inline" (ngSubmit)="onSubmit(f)" #f="ngForm">
         
         <div class="form-group col-md-2">
@@ -18,11 +19,6 @@
         </div>
         <button type="submit" class="btn btn-default col-md-2">Submit</button>
     </form>
-    
 </div>
-<br/> <br/>
-<div class="col-md-8 col-md-offset-2">
-    <app-search
-                [search]="search"
-                *ngFor="let search of searches"></app-search>
-</div>
+
+<app-search [search]="search" *ngFor="let search of searches"></app-search>

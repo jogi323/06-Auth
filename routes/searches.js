@@ -18,6 +18,7 @@ router.use('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
+    console.log(req.query);
     var decoded = jwt.decode(req.query.token);
     User.findById(decoded.user._id, function (err, user) {
         console.log(user);

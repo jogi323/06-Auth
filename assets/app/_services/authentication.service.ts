@@ -24,18 +24,7 @@ export class AuthenticationService {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.post(this.loginUrl, body, {headers: headers})
-            .map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                let user = response.json();
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                   // console.log(user);
-                    //console.log(user.user._id);
-
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    
-                }
-            })
+            .map((response: Response) => response.json())
             .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
     }
 

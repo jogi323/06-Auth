@@ -1,0 +1,19 @@
+<article>
+    <div class="box box-widget">
+        <div class="box-header with-border">
+            <div class="user-block">
+                <img class="img-circle" src="http://vignette2.wikia.nocookie.net/angrybirds/images/5/55/Minion_pig_copy.png/revision/latest?cb=20130103091743" alt="User Image">
+                <span class="username"><a href="#">{{ search.username }}</a></span>
+                <span class="description">Shared publicly - 7:30 PM Today</span>
+            </div>
+        </div>
+
+        <div class="box-body" style="display: block;">
+            <!--<img class="img-responsive show-in-modal" src="http://vignette2.wikia.nocookie.net/angrybirds/images/5/55/Minion_pig_copy.png/revision/latest?cb=20130103091743" alt="Photo">-->
+            <p>{{ search.content }}</p>
+            <button type="button" class="btn btn-default btn-xs" (click)="onChat()"><i class="fa fa-share"></i> Chat</button>
+            <button type="button" class="btn btn-default btn-xs" (click)="onMessage()"><i class="fa fa-thumbs-o-up"></i> message</button>
+            
+        </div>
+    </div>
+</article>

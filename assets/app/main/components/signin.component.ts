@@ -24,7 +24,8 @@ export class SigninComponent {
         this.authenticationService.login(user)
             .subscribe(
                 data => {
-                   //this.router.navigate([this.returnUrl]);
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('userId', data.userId);
                     this.router.navigate(['/profile']);
 
                 },

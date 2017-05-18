@@ -2,6 +2,7 @@ export class Search {
     content: string;
     contentType: string;
     username: string;
+    //date:string;
     searchId?: string;
     userId?: string;
 
@@ -9,6 +10,7 @@ export class Search {
         this.content = content;
         this.contentType = contentType;
         this.username = username;
+      //  this.date = date;
         this.searchId = searchId;
         this.userId = userId;
     }

@@ -29,11 +29,12 @@ export class SearchInputComponent implements OnInit {
     }
     
     onSubmit(form: NgForm) {
-        const search = new Search(form.value.content, form.value.contentType.name, 'Max');
+        const search = new Search(form.value.content, form.value.contentType.name, 'Max' );
         this.searchService.addSearch(search)
             .subscribe(
                 (searches: Search[]) => {
                     this.searches = searches;
+                    console.log(searches);
                 }
             );
             // .subscribe(
@@ -54,9 +55,7 @@ export class SearchInputComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.searchService.searchIsEdit.subscribe(
-            (search: Search) => this.search = search
-        );
+        
     }
 }
 

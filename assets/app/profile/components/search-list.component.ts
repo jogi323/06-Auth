@@ -5,17 +5,11 @@ import { Search } from "../models/search.model";
 
 @Component({
     selector: 'app-search-list',
-    template: `
-        <div class="col-md-8 col-md-offset-2">
-            <app-search
-                   [search]="search"
-                    *ngFor="let search of searches"></app-search>
-        </div>
-    `
+    templateUrl: './search-list.component.html'
 })
 export class SearchListComponent implements OnInit {
     @Input() search: Search;
-    searches: Search[];
+    //searches: Search[];
 
     constructor(private searchService: SearchService) {}
 

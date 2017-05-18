@@ -5,12 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
  import { ProfileComponent } from './profile.component';
-// import { SearchInputComponent } from './components/search-input.component';
-// import { SearchListComponent } from './components/search-list.component';
+ import { SearchInputComponent } from './components/search-input.component';
+ import { SearchComponent } from './components/search-list.component';
 
 import { AuthGuard } from '../_guards/auth.guard';
 import { AuthenticationService } from '../_services/authentication.service';
 import { UserService } from '../_services/user.service';
+import { SearchService } from '../_services/search.service';
 import { ProfileRouting } from './profile-routing.module';
 
 @NgModule({
@@ -24,14 +25,14 @@ import { ProfileRouting } from './profile-routing.module';
   ],
   declarations: [
      ProfileComponent,
-    // SearchInputComponent,
-    // SearchListComponent
+     SearchInputComponent,
+     SearchComponent
   ],
-  providers: [ AuthGuard, AuthenticationService, UserService ],
+  providers: [ AuthGuard, AuthenticationService, UserService, SearchService ],
   exports:[
      ProfileComponent,
-    // SearchInputComponent,
-    // SearchListComponent
+     SearchInputComponent,
+     SearchComponent
   ]
 })
 export class ProfileModule {}
